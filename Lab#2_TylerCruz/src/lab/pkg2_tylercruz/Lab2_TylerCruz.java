@@ -6,6 +6,7 @@
 package lab.pkg2_tylercruz;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JColorChooser;
 
@@ -18,15 +19,20 @@ public class Lab2_TylerCruz {
     /**
      * @param args the command line arguments
      */
+    static Random R = new Random();
+
     public static void main(String[] args) {
         // TODO code application logic here
         ArrayList empleados = new ArrayList();
-
+        String name = "", apellido = "", favColor = "", genero = "", titulo = "", cargo = "";
+        int cantGerentes = 0;
+        int edad = 0, peso = 0;
+        double altura = 0;
         int salarioGerente = 50000, salarioAseador = 30000, salarioCajero = 40000, salarioSeguridad = 38000;
         boolean login = false;
         Scanner read = new Scanner(System.in);
         int option = 0;
-        while (option != 4) {
+        while (option != 8) {
             System.out.println("1. Registro de Empleados\n"
                     + "2. Despedir Empleados\n"
                     + "3. Log In\n"
@@ -38,31 +44,81 @@ public class Lab2_TylerCruz {
             option = read.nextInt();
             switch (option) {
                 case 1:
+                    while (login == false) {
+                        System.out.println("Primero tienes que ingresar al Login:");
+                        System.out.println("Ingrese su username: ");
+                        String username = read.next();
+                        System.out.println("Ingrese password: ");
+                        String password = read.next();
+                        login = Login(username, password);
+
+                    }
                     System.out.println("Ingrese su nombre: ");
-                    String name = read.next();
+                    name = read.next();
                     System.out.println("Ingrese su Apellido: ");
-                    String apellido = read.next();
+                    apellido = read.next();
                     System.out.println("Ingrese su color favorito: ");
-                    String favColor = read.next();
+                    favColor = read.next();
                     System.out.println("Ingrese su edad: ");
-                    int edad = read.nextInt();
+                    edad = read.nextInt();
                     System.out.println("Ingrese su genero: (H/M) ");
-                    String genero = read.next();
+                    genero = read.next();
                     System.out.println("Ingrese altura: ");
-                    double altura = read.nextDouble();
+                    altura = read.nextDouble();
                     System.out.println("Ingrese peso: ");
-                    int peso = read.nextInt();
+                    peso = read.nextInt();
                     System.out.println("Ingrese Titulo:  ");
-                    String titulo = read.next();
-                    System.out.println("Ingese su Cargo: ");
-                    String cargo = read.next();
+                    titulo = read.next();
+                    System.out.println("Ingese su el Cargo: \n"
+                            + "1) Gerente\n"
+                            + "2) Aseadores\n"
+                            + "3) Seguridad\n"
+                            + "4) Cajero");
+                    int cargo00 = read.nextInt();
+                    switch (cargo00) {
+                        case 1:
+                            if (cantGerentes <= 2) {
+
+                                cargo = "Gerente";
+                                cantGerentes++;
+                            } else {
+                                System.out.println("No se pudo asignar Gerente");
+                            }
+                            break;
+                        case 2:
+                            cargo = "Aseador";
+                            break;
+                        case 3:
+                            cargo = "Seguridad";
+                            break;
+                        case 4:
+                            cargo = "Cajero";
+                            break;
+
+                    }
                     empleados.add(new Empleados(name, apellido, favColor, edad, genero, altura, peso, titulo, cargo));
                     break;
                 case 2:
+                    while (login == false) {
+                        System.out.println("Primero tienes que ingresar al Login:");
+                        System.out.println("Ingrese su username: ");
+                        String username = read.next();
+                        System.out.println("Ingrese password: ");
+                        String password = read.next();
+                        login = Login(username, password);
 
+                    }
                     System.out.println("Ingresar el posicion del empleado que deseas Despedir: ");
                     int pos = read.nextInt();
                     empleados.remove(pos);
+                    if (((Empleados) empleados.get(pos)).getCargo().equals("Gerente")) {
+                        cantGerentes--;
+//                        for (int i = 0; i < empleados.size(); i++) {
+//                            if (((Empleados) empleados.get(i)).getCargo().equals("Cajero")) {
+//                               ((Empleados) empleados.get(i)).setCargo("Gerente");
+//                            }
+//                        }
+                    }
                     break;
                 case 3:
                     System.out.println("Ingrese su username: ");
@@ -73,20 +129,79 @@ public class Lab2_TylerCruz {
                     break;
                 case 4:
                     //(Carro) inventario.get(p)).setMarca(m);
+                    while (login == false) {
+                        System.out.println("Primero tienes que ingresar al Login:");
+                        System.out.println("Ingrese su username: ");
+                        username = read.next();
+                        System.out.println("Ingrese password: ");
+                        password = read.next();
+                        login = Login(username, password);
+
+                    }
                     for (int i = 0; i < empleados.size(); i++) {
                         if (((Empleados) empleados.get(i)).getCargo().equals("Cajero")) {
                             System.out.println(empleados.indexOf(i) + "- " + empleados.get(i) + "\n");
                         }
                     }
-                    break;
-                case 5:
-                    for (Object o : empleados) {
-                        System.out.println(empleados.indexOf(o) + "-" + o + "\n");
+                    System.out.println("Ingrese la posicion del Cajero que deseas Ascender: ");
+                    int posA = read.nextInt();
+                    if (((Empleados) empleados.get(posA)).getCargo().equals("Cajero")) {
+                        if (cantGerentes <= 2) {
+                            ((Empleados) empleados.get(posA)).setCargo("Gerente");
+                        }
                     }
                     break;
+                case 5:
+                    while (login == false) {
+                        System.out.println("Primero tienes que ingresar al Login:");
+                        System.out.println("Ingrese su username: ");
+                        username = read.next();
+                        System.out.println("Ingrese password: ");
+                        password = read.next();
+                        login = Login(username, password);
+
+                    }
+                    System.out.println("Gerente: ");
+                    for (int i = 0; i < empleados.size(); i++) {
+                        if (((Empleados) empleados.get(i)).getCargo().equals("Gerente")) {
+                            System.out.println(empleados.indexOf(i) + "- " + empleados.get(i) + "\n");
+                        }
+                    }
+                    System.out.println("");
+                    System.out.println("Aseadores: ");
+                    for (int i = 0; i < empleados.size(); i++) {
+                        if (((Empleados) empleados.get(i)).getCargo().equals("Aseador")) {
+                            System.out.println(empleados.indexOf(i) + "- " + empleados.get(i) + "\n");
+                        }
+                    }
+                    System.out.println("");
+                    System.out.println("Cajeros: ");
+                    for (int i = 0; i < empleados.size(); i++) {
+                        if (((Empleados) empleados.get(i)).getCargo().equals("Cajero")) {
+                            System.out.println(empleados.indexOf(i) + "- " + empleados.get(i) + "\n");
+                        }
+                    }
+                    System.out.println("");
+                    System.out.println("Seguridad: ");
+                    for (int i = 0; i < empleados.size(); i++) {
+                        if (((Empleados) empleados.get(i)).getCargo().equals("Seguridad")) {
+                            System.out.println(empleados.indexOf(i) + "- " + empleados.get(i) + "\n");
+                        }
+                    }
+                    System.out.println("");
+
+                    break;
                 case 6:
+                    while (login == false) {
+                        System.out.println("Primero tienes que ingresar al Login:");
+                        System.out.println("Ingrese su username: ");
+                        username = read.next();
+                        System.out.println("Ingrese password: ");
+                        password = read.next();
+                        login = Login(username, password);
+
+                    }
                     int option1 = 0;
-                    //p = Integer.parseInt(JOptionPane.showInputDialog("Posicion a modificar"));
                     System.out.println("Ingrese el posicion a modificar: ");
                     int posM = read.nextInt();
                     while (option1 != 10) {
@@ -106,17 +221,20 @@ public class Lab2_TylerCruz {
                             case 1:
                                 System.out.println("Ingrese el nuevo Nombre: ");
                                 String newName = read.nextLine();
+                                newName = read.nextLine();
                                 ((Empleados) empleados.get(posM)).setNombre(newName);
 
                                 break;
                             case 2:
                                 System.out.println("Ingrese el nuevo Apellido: ");
                                 String newApellido = read.nextLine();
+                                newApellido = read.nextLine();
                                 ((Empleados) empleados.get(posM)).setApellido(newApellido);
                                 break;
                             case 3:
                                 System.out.println("Ingrese el nuevo Color: ");
                                 String newColor = read.nextLine();
+                                newColor = read.nextLine();
                                 ((Empleados) empleados.get(posM)).setColor(newColor);
                                 break;
                             case 4:
@@ -145,9 +263,35 @@ public class Lab2_TylerCruz {
                                 ((Empleados) empleados.get(posM)).setTitulo(newTitulo);
                                 break;
                             case 9:
-                                System.out.println("Ingrese el nuevo Cargo: ");
-                                String newCargo = read.next();
-                                ((Empleados) empleados.get(posM)).setCargo(newCargo);
+                                if (cantGerentes <= 3) {
+
+                                    System.out.println("Ingrese el nuevo Cargo: ");
+                                    String newCargo = read.next();
+                                    ((Empleados) empleados.get(posM)).setCargo(newCargo);
+                                    System.out.println("Ingese su el Cargo: \n"
+                                            + "1) Gerente\n"
+                                            + "2) Aseadores\n"
+                                            + "3) Seguridad\n"
+                                            + "4) Cajeros");
+                                    cargo00 = read.nextInt();
+                                    switch (cargo00) {
+                                        case 1:
+                                            cargo = "Gerente";
+                                            break;
+                                        case 2:
+                                            cargo = "Aseador";
+                                            break;
+                                        case 3:
+                                            cargo = "Seguridad";
+                                            break;
+                                        case 4:
+                                            cargo = "Cajero";
+                                            break;
+                                    }
+                                } else {
+                                    System.out.println("No se pudo hacer el cambio porque no pueden habermas de 3 Gerentes");
+                                }
+
                                 break;
 
                         }
@@ -155,6 +299,28 @@ public class Lab2_TylerCruz {
 
                     break;
                 case 7:
+                    int randomsize = 0;
+                    while (login == false) {
+                        System.out.println("Primero tienes que ingresar al Login:");
+                        System.out.println("Ingrese su username: ");
+                        username = read.next();
+                        System.out.println("Ingrese password: ");
+                        password = read.next();
+                        login = Login(username, password);
+
+                    }
+                    String[] cargos = {"Gerente", "Aseador", "Seguridad", "Cajero"};
+                    System.out.println("Ingrese un numero: ");
+                    int randomN = read.nextInt();
+                    while (randomsize < randomN) {
+                        if (cantGerentes <= 2) {
+                            ((Empleados) empleados.get(0 + R.nextInt(empleados.size()))).setCargo(cargos[0 + R.nextInt(cargos.length)]);
+
+                        }
+                        randomsize++;
+
+                    }
+
                     break;
 
             }

@@ -18,7 +18,7 @@ public class Empleados {
     private String color;
     private int edad;
     private String Genero;
-    private int altura;
+    private double altura;
     private int peso;
     private String Titulo;
     private String Cargo;
@@ -26,7 +26,7 @@ public class Empleados {
     public Empleados(){
         
     }
-    public Empleados(String nombre, String apellido, String color, int edad, String Genero, int altura, int peso, String Titulo, String Cargo) {
+    public Empleados(String nombre, String apellido, String color, int edad, String Genero, double altura, int peso, String Titulo, String Cargo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.color = color;
@@ -78,11 +78,11 @@ public class Empleados {
         this.Genero = Genero;
     }
 
-    public int getAltura() {
+    public double getAltura() {
         return altura;
     }
 
-    public void setAltura(int altura) {
+    public void setAltura(double altura) {
         this.altura = altura;
     }
 
@@ -109,5 +109,12 @@ public class Empleados {
     public void setCargo(String Cargo) {
         this.Cargo = Cargo;
     }
+
+    @Override
+    public String toString() {
+        return "Empleados{" + "nombre=" + nombre + ", apellido=" + apellido + ", color=" + color + ", edad=" + edad + ", Genero=" + Genero + ", altura=" + altura + ", peso=" + peso + ", Titulo=" + Titulo + ", Cargo=" + Cargo + '}';
+    }
+
+   
 
 }
