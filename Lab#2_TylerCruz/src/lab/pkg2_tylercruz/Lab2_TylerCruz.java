@@ -140,7 +140,7 @@ public class Lab2_TylerCruz {
                     }
                     for (int i = 0; i < empleados.size(); i++) {
                         if (((Empleados) empleados.get(i)).getCargo().equals("Cajero")) {
-                            System.out.println(empleados.indexOf(i) + "- " + empleados.get(i) + "\n");
+                            System.out.println(empleados.indexOf(empleados.get(i)) + "- " + empleados.get(i) + "\n");
                         }
                     }
                     System.out.println("Ingrese la posicion del Cajero que deseas Ascender: ");
@@ -164,28 +164,28 @@ public class Lab2_TylerCruz {
                     System.out.println("Gerente: ");
                     for (int i = 0; i < empleados.size(); i++) {
                         if (((Empleados) empleados.get(i)).getCargo().equals("Gerente")) {
-                            System.out.println(empleados.indexOf(i) + "- " + empleados.get(i) + "\n");
+                            System.out.println(empleados.indexOf(empleados.get(i)) + "- " + empleados.get(i) + "\n");
                         }
                     }
                     System.out.println("");
                     System.out.println("Aseadores: ");
                     for (int i = 0; i < empleados.size(); i++) {
                         if (((Empleados) empleados.get(i)).getCargo().equals("Aseador")) {
-                            System.out.println(empleados.indexOf(i) + "- " + empleados.get(i) + "\n");
+                            System.out.println(empleados.indexOf(empleados.get(i)) + "- " + empleados.get(i) + "\n");
                         }
                     }
                     System.out.println("");
                     System.out.println("Cajeros: ");
                     for (int i = 0; i < empleados.size(); i++) {
                         if (((Empleados) empleados.get(i)).getCargo().equals("Cajero")) {
-                            System.out.println(empleados.indexOf(i) + "- " + empleados.get(i) + "\n");
+                            System.out.println(empleados.indexOf(empleados.get(i)) + "- " + empleados.get(i) + "\n");
                         }
                     }
                     System.out.println("");
                     System.out.println("Seguridad: ");
                     for (int i = 0; i < empleados.size(); i++) {
                         if (((Empleados) empleados.get(i)).getCargo().equals("Seguridad")) {
-                            System.out.println(empleados.indexOf(i) + "- " + empleados.get(i) + "\n");
+                            System.out.println(empleados.indexOf(empleados.get(i)) + "- " + empleados.get(i) + "\n");
                         }
                     }
                     System.out.println("");
